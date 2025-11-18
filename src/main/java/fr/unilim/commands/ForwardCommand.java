@@ -12,6 +12,7 @@ public record ForwardCommand(Rover rover, Grid grid) implements Command {
         Position next = getNextPosition();
 
         if (!grid.isValidMove(next)) {
+            System.out.println("You can't go there, there is an obstacle at " + next);
             return;
         }
 

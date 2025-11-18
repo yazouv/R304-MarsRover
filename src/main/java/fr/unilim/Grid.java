@@ -36,12 +36,7 @@ public class Grid {
 
     public boolean isValidMove(Position position) {
         Position within = isWithinBounds(position);
-        boolean result = within.equals(position) && !hasObstacle(position);
 
-        if (!result) {
-            System.out.println("Invalid move to position: " + within);
-        }
-
-        return result;
+        return !hasObstacle(within);
     }
 }
