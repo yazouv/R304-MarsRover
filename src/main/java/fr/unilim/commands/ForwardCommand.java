@@ -9,9 +9,18 @@ public record ForwardCommand(Rover rover, Grid grid) implements Command {
 
     @Override
     public void execute() {
-        Position nextPosition = getNextPosition();
-        if (grid.isValidMove(nextPosition)) {
+        Position next = getNextPosition();
+
+        if (!grid.isValidMove(next)) {
+            return;
+        }
+
+        Position within = grid.isWithinBounds(next);
+
+        if (within.equals(next)) {
             rover.forward();
+        } else {
+            rover.setPosition(within);
         }
     }
 

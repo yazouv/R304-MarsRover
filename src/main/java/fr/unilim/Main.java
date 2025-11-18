@@ -24,14 +24,13 @@ public class Main {
         computer.setCommand("l", left);
         computer.setCommand("r", right);
 
-        grid.addObstacle(new Position(3, 3));
+        grid.addObstacle(new Position(0, 99));
 
         while (true) {
             System.out.println("Enter command (f=forward, b=backward, l=left, r=right): ");
             String input = scanner.nextLine();
             computer.executeCommand(input);
-            rover.position();
-            rover.orientation();
+            System.out.println(rover.toString());
         }
     }
 }

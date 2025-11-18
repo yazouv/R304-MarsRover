@@ -1,8 +1,6 @@
 package fr.unilim;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Grid {
@@ -30,16 +28,20 @@ public class Grid {
         return obstacles.contains(position);
     }
 
-    public boolean isWithinBounds(Position position) {
-        //TODO
-        return true;
+    public Position isWithinBounds(Position position) {
+        int newX = (position.x() + width) % width;
+        int newY = (position.y() + height) % height;
+        return new Position(newX, newY);
     }
 
     public boolean isValidMove(Position position) {
-        boolean result = isWithinBounds(position) && !hasObstacle(position);
+        Position within = isWithinBounds(position);
+        boolean result = within.equals(position) && !hasObstacle(position);
+
         if (!result) {
-            System.out.println("Invalid move to position: " + position);
+            System.out.println("Invalid move to position: " + within);
         }
+
         return result;
     }
 }

@@ -67,4 +67,16 @@ public class Rover {
     public Orientation orientation() {
         return orientation;
     }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "position=" + position +
+                ", orientation=" + orientation +
+                '}';
+    }
 }
