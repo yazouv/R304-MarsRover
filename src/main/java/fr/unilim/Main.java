@@ -7,15 +7,14 @@ import fr.unilim.commands.RightCommand;
 
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
         Rover rover = new Rover();
         Scanner scanner = new Scanner(System.in);
+        Grid grid = new Grid();
 
-        Command forward = new ForwardCommand(rover);
-        Command backward = new BackwardCommand(rover);
+        Command forward = new ForwardCommand(rover, grid);
+        Command backward = new BackwardCommand(rover, grid);
         Command left  = new LeftCommand(rover);
         Command right = new RightCommand(rover);
 
@@ -24,6 +23,8 @@ public class Main {
         computer.setCommand("b", backward);
         computer.setCommand("l", left);
         computer.setCommand("r", right);
+
+        grid.addObstacle(new Position(3, 3));
 
         while (true) {
             System.out.println("Enter command (f=forward, b=backward, l=left, r=right): ");

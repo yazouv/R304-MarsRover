@@ -1,43 +1,44 @@
 package fr.unilim;
 
 public class Rover {
-    private int x;
-    private int y;
+    private Position position;
     private Orientation orientation;
 
     public Rover() {
-        this.x = 0;
-        this.y = 0;
+        this.position = new Position(0, 0);
         this.orientation = Orientation.NORTH;
     }
 
     public Rover(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.position = new Position(x, y);
         this.orientation = Orientation.NORTH;
     }
 
     public Rover(int x, int y, Orientation orientation) {
-        this.x = x;
-        this.y = y;
+        this.position = new Position(x, y);
+        this.orientation = orientation;
+    }
+
+    public Rover(Position position, Orientation orientation) {
+        this.position = position;
         this.orientation = orientation;
     }
 
     public void forward() {
         switch (orientation) {
-            case NORTH -> y++;
-            case EAST -> x++;
-            case SOUTH -> y--;
-            case WEST -> x--;
+            case NORTH -> position = position.moveNorth();
+            case EAST -> position = position.moveEast();
+            case SOUTH -> position = position.moveSouth();
+            case WEST -> position = position.moveWest();
         }
     }
 
     public void backward() {
         switch (orientation) {
-            case NORTH -> y--;
-            case EAST -> x--;
-            case SOUTH -> y++;
-            case WEST -> x++;
+            case NORTH -> position = position.moveSouth();
+            case EAST -> position = position.moveWest();
+            case SOUTH -> position = position.moveNorth();
+            case WEST -> position = position.moveEast();
         }
     }
 
@@ -49,6 +50,7 @@ public class Rover {
             case WEST -> this.orientation = Orientation.SOUTH;
         }
     }
+    
     public void turnRight() {
         switch (orientation) {
             case NORTH -> this.orientation = Orientation.EAST;
@@ -58,11 +60,11 @@ public class Rover {
         }
     }
 
-    public void position() {
-        System.out.println("X: " + this.x + " Y: " + this.y);
+    public Position position() {
+        return position;
     }
 
-    public void orientation() {
-        System.out.println("Orientation: " + this.orientation);
+    public Orientation orientation() {
+        return orientation;
     }
 }
